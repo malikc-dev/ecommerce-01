@@ -1,9 +1,12 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import "react-native-reanimated";
 import { useEffect } from "react";
+import { StatusBar } from "react-native";
+
+import { Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import * as SplashScreen from "expo-splash-screen";
+
+import "react-native-reanimated";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -45,6 +48,7 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <Stack>
+      <StatusBar barStyle={"light-content"} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
