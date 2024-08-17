@@ -1,7 +1,6 @@
 import React from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
-import { Pressable } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 //import constants
 import { Colors } from "@/constants/Colors";
@@ -52,14 +51,6 @@ const tabInfos = [
   },
 ];
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
 export default function TabLayout() {
   return (
     <Tabs
@@ -88,7 +79,10 @@ export default function TabLayout() {
             title: title,
             tabBarIcon: ({ focused }) =>
               focused ? (
-                <IconActive color="#FF8902" size={24} />
+                <View>
+                  <IconActive color="#FF8902" size={24} />
+                  <View style={styles.activeDot} />
+                </View>
               ) : (
                 <IconInactive color="#F5F3F4" size={24} />
               ),
@@ -98,3 +92,16 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  activeDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 100,
+    backgroundColor: "#FF8902",
+    position: "absolute",
+    bottom: -10,
+    left: "50%",
+    transform: [{ translateX: -24 }],
+  },
+});
