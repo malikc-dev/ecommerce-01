@@ -6,6 +6,52 @@ import { Pressable } from "react-native";
 //import constants
 import { Colors } from "@/constants/Colors";
 
+//import icons
+import {
+  HomeActive,
+  HomeNotActive,
+  DiscoverNotActive,
+  Liked,
+  NotLiked,
+  CartActive,
+  CartNotActive,
+  ProfileNotActive,
+} from "@/assets/icons";
+
+//tab bar infos
+const tabInfos = [
+  {
+    name: "index",
+    title: "Home",
+    IconActive: HomeActive,
+    IconInactive: HomeNotActive,
+  },
+  {
+    name: "discover",
+    title: "Discover",
+    IconActive: DiscoverNotActive,
+    IconInactive: DiscoverNotActive,
+  },
+  {
+    name: "liked",
+    title: "Liked",
+    IconActive: Liked,
+    IconInactive: NotLiked,
+  },
+  {
+    name: "cart",
+    title: "Cart",
+    IconActive: CartActive,
+    IconInactive: CartNotActive,
+  },
+  {
+    name: "profile",
+    title: "Profile",
+    IconActive: ProfileNotActive,
+    IconInactive: ProfileNotActive,
+  },
+];
+
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -34,45 +80,21 @@ export default function TabLayout() {
         },
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-
-      <Tabs.Screen
-        name="discover"
-        options={{
-          title: "Discover",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-
-      <Tabs.Screen
-        name="liked"
-        options={{
-          title: "Liked",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-
-      <Tabs.Screen
-        name="cart"
-        options={{
-          title: "Cart",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: "Profile",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
+      {tabInfos.map(({ name, title, IconActive, IconInactive }) => (
+        <Tabs.Screen
+          key={name}
+          name={name}
+          options={{
+            title: title,
+            tabBarIcon: ({ focused }) =>
+              focused ? (
+                <IconActive color="#FF8902" size={24} />
+              ) : (
+                <IconInactive color="#F5F3F4" size={24} />
+              ),
+          }}
+        />
+      ))}
     </Tabs>
   );
 }
