@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Text, View } from "react-native";
 
-export default function HomeScreen() {
+export default function LikedScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
+      <Text style={styles.title}>Liked</Text>
     </View>
   );
 }

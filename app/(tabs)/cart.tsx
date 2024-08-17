@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Text, View } from "react-native";
 
-export default function HomeScreen() {
+export default function CartScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
+      <Text style={styles.title}>Cart</Text>
     </View>
   );
 }
