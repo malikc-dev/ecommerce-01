@@ -48,7 +48,6 @@ export default function RootLayout() {
 function RootLayoutNav() {
   return (
     <Stack>
-      <StatusBar barStyle={"light-content"} />
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
