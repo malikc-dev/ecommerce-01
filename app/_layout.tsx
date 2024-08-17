@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { StatusBar } from "react-native";
 
 import { Stack } from "expo-router";
 import { useFonts } from "expo-font";
@@ -23,7 +22,11 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    "Satoshi Black": require("../assets/fonts/Satoshi-Black.otf"),
+    "Satoshi Bold": require("../assets/fonts/Satoshi-Bold.otf"),
+    "Satoshi Medium": require("../assets/fonts/Satoshi-Medium.otf"),
+    "Satoshi Regular": require("../assets/fonts/Satoshi-Regular.otf"),
+    "Satoshi Light": require("../assets/fonts/Satoshi-Light.otf"),
     ...FontAwesome.font,
   });
 
