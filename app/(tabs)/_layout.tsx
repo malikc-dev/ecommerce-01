@@ -3,6 +3,9 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import { Pressable } from "react-native";
 
+//import constants
+import { Colors } from "@/constants/Colors";
+
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -16,45 +19,57 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "blue",
+        tabBarShowLabel: false,
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: Colors.eerieBlack,
+          borderTopColor: "transparent",
+          position: "absolute",
+          height: 90,
+          bottom: 25,
+          borderRadius: 70,
+          marginHorizontal: 20,
+          paddingVertical: 25,
+          paddingHorizontal: 10,
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          headerShown: false,
-          title: "Tab One",
+          title: "Home",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+
       <Tabs.Screen
         name="discover"
         options={{
-          headerShown: false,
-          title: "Tab Two",
+          title: "Discover",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+
       <Tabs.Screen
         name="liked"
         options={{
-          headerShown: false,
-          title: "Tab Two",
+          title: "Liked",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+
       <Tabs.Screen
         name="cart"
         options={{
-          headerShown: false,
-          title: "Tab Two",
+          title: "Cart",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+
       <Tabs.Screen
         name="profile"
         options={{
-          headerShown: false,
-          title: "Tab Two",
+          title: "Profile",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
