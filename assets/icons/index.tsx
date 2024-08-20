@@ -4,6 +4,7 @@ import Svg, { Path, Circle } from "react-native-svg";
 type Props = {
   color?: string;
   size: number;
+  style?: object;
 };
 
 export const Logo: React.FC<Props> = ({ size }) => {
@@ -56,11 +57,12 @@ export const Notifications: React.FC<Props> = ({ color, size }) => {
   );
 };
 
-export const Search: React.FC<Props> = ({ color, size }) => {
+export const Search: React.FC<Props> = ({ color, size, style }) => {
   return (
     <Svg
       width={size || "19"}
       height={size || "19"}
+      style={style}
       viewBox="0 0 19 19"
       fill="none"
     >

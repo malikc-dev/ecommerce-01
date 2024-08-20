@@ -10,6 +10,7 @@ import { Colors } from "@/constants/Colors";
 
 //import icons
 import { Logo, Notifications } from "@/assets/icons";
+import SearchBar from "@/components/SearchBar";
 
 export default function HomeScreen() {
   return (
@@ -21,6 +22,7 @@ export default function HomeScreen() {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
+            marginBottom: 20,
           }}
         >
           <View style={styles.logoContainer}>
@@ -28,12 +30,19 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.shippingContainer}>
-            <Text>Adresse de livraison</Text>
-            <Text>Boulevard Général de Gaulle</Text>
+            <Text style={styles.shippingText}>Adresse de livraison</Text>
+            <Text style={styles.shippingAddress}>
+              Boulevard Général de Gaulle
+            </Text>
           </View>
 
-          <View style={styles.notificationsContainer}></View>
+          <View style={styles.notificationsContainer}>
+            <Notifications size={responsiveScreenHeight(3)} />
+            <View style={styles.notificationsDot} />
+          </View>
         </View>
+
+        <SearchBar />
       </View>
 
       {/* BODY SECTION */}
@@ -54,7 +63,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
     marginBottom: 15,
-    paddingTop: 60,
+    paddingTop: 65,
     paddingHorizontal: 16,
   },
   bodySection: {
@@ -78,7 +87,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
   },
+  shippingText: {
+    fontSize: responsiveScreenFontSize(1.35),
+    fontFamily: "Satoshi Bold",
+    textAlign: "center",
+    color: Colors.eerieBlack,
+    opacity: 0.4,
+  },
+  shippingAddress: {
+    fontSize: responsiveScreenFontSize(1.7),
+    fontFamily: "Satoshi Black",
+    textAlign: "center",
+    color: Colors.eerieBlack,
+  },
   notificationsContainer: {
+    position: "relative",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -86,5 +109,14 @@ const styles = StyleSheet.create({
     height: responsiveScreenWidth(13),
     borderRadius: 100,
     backgroundColor: Colors.cornSilk,
+  },
+  notificationsDot: {
+    position: "absolute",
+    width: 10,
+    height: 10,
+    borderRadius: 100,
+    backgroundColor: Colors.darkOrange,
+    top: 5,
+    right: 0,
   },
 });
