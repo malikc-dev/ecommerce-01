@@ -14,6 +14,8 @@ const SearchBar = () => {
         placeholderTextColor="gray"
         enterKeyHint="search"
         inputMode="search"
+        autoFocus={false}
+        defaultValue="          Rechercher dans la boutique"
       />
       <Search
         style={styles.icon}
@@ -37,12 +39,12 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 10,
     backgroundColor: Colors.cornSilk,
-    color: Colors.eerieBlack,
+    color: "#19181893",
     fontFamily: "Satoshi Regular",
   },
   icon: {
     position: "absolute",
-    left: 10,
+    left: 80,
     top: 13,
   },
 });
