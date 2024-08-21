@@ -10,9 +10,23 @@ import { Colors } from "@/constants/Colors";
 
 //import icons
 import { Logo, Notifications } from "@/assets/icons";
+
+//import components
 import SearchBar from "@/components/SearchBar";
+import CarouselSquare from "@/components/CarouselSquare";
 
 export default function HomeScreen() {
+  const data = [
+    {
+      image: require("../../assets/images/shop/O1.jpg"),
+    },
+    {
+      image: require("../../assets/images/shop/O1.jpg"),
+    },
+    {
+      image: require("../../assets/images/shop/O1.jpg"),
+    },
+  ];
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* HEADER SECTION */}
@@ -46,7 +60,14 @@ export default function HomeScreen() {
       </View>
 
       {/* BODY SECTION */}
-      <View style={styles.bodySection}></View>
+      <View style={styles.bodySection}>
+        <View>
+          <Text style={styles.sectionHeader}>Produits Populaires.</Text>
+          <View>
+            <CarouselSquare data={data} />
+          </View>
+        </View>
+      </View>
     </ScrollView>
   );
 }
@@ -72,6 +93,7 @@ const styles = StyleSheet.create({
     width: responsiveScreenWidth(100),
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    paddingVertical: 20,
   },
   logoContainer: {
     flexDirection: "row",
@@ -118,5 +140,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.darkOrange,
     top: 5,
     right: 0,
+  },
+  sectionHeader: {
+    fontSize: responsiveScreenFontSize(1.7),
+    fontFamily: "Satoshi Black",
+    color: Colors.eerieBlack,
+    marginLeft: 16,
   },
 });
