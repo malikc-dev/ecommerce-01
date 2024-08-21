@@ -1,4 +1,10 @@
 import { Text, View, StyleSheet, ScrollView } from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedScrollHandler,
+  interpolate,
+} from "react-native-reanimated";
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
@@ -16,6 +22,50 @@ import SearchBar from "@/components/SearchBar";
 import CarouselSquare from "@/components/CarouselSquare";
 
 export default function HomeScreen() {
+  const y = useSharedValue(0);
+  const onScroll = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      y.value = event.contentOffset.y;
+    },
+  });
+
+  const translateHeader = useAnimatedStyle(() => {
+    const translateY = interpolate(y.value, [0, 75], [0, -75], "clamp");
+    return {
+      transform: [{ translateY: translateY }],
+    };
+  });
+
+  const animatedHeaderElement = useAnimatedStyle(() => {
+    const opacity = interpolate(y.value, [0, 75], [1, 0], "clamp");
+    return {
+      opacity: opacity,
+    };
+  });
+
+  const scaleDown = useAnimatedStyle(() => {
+    let scale;
+
+    if (y.value >= 0) {
+      // Handle scale down
+      scale = interpolate(y.value, [0, 75], [1, 0.5], "clamp");
+    } else {
+      // Handle scale up
+      scale = interpolate(y.value, [0, -75], [1, 1.3], "clamp");
+    }
+
+    return {
+      transform: [{ scale }],
+    };
+  });
+
+  const scaleUp = useAnimatedStyle(() => {
+    const scale = interpolate(y.value, [0, -75], [1, 1.1], "clamp");
+    return {
+      transform: [{ scale: scale }],
+    };
+  });
+
   const data = [
     {
       image: require("../../assets/images/shop/03.jpeg"),
@@ -28,56 +78,66 @@ export default function HomeScreen() {
     },
   ];
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <>
       {/* HEADER SECTION */}
-      <View style={styles.headerSection}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
+      <Animated.View style={[styles.headerSection, translateHeader]}>
+        <Animated.View
+          style={[
+            {
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 20,
+            },
+            animatedHeaderElement,
+          ]}
         >
-          <View style={styles.logoContainer}>
+          <Animated.View style={[styles.logoContainer, scaleDown]}>
             <Logo size={responsiveScreenHeight(3)} />
-          </View>
+          </Animated.View>
 
-          <View style={styles.shippingContainer}>
+          <Animated.View style={[styles.shippingContainer]}>
             <Text style={styles.shippingText}>Adresse de livraison</Text>
             <Text style={styles.shippingAddress}>
               Boulevard Général de Gaulle
             </Text>
-          </View>
+          </Animated.View>
 
-          <View style={styles.notificationsContainer}>
+          <Animated.View style={[styles.notificationsContainer, scaleDown]}>
             <Notifications size={responsiveScreenHeight(3)} />
             <View style={styles.notificationsDot} />
-          </View>
-        </View>
+          </Animated.View>
+        </Animated.View>
 
         <SearchBar />
-      </View>
+      </Animated.View>
 
-      {/* BODY SECTION */}
-      <View style={styles.bodySection}>
-        <View>
-          <Text style={styles.sectionHeader}>Produits Populaires.</Text>
+      <Animated.ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.container}
+        onScroll={onScroll}
+      >
+        {/* BODY SECTION */}
+        <View style={styles.bodySection}>
           <View>
+            <Text style={styles.sectionHeader}>Produits Populaires.</Text>
             <CarouselSquare data={data} />
           </View>
+
+          <View style={{ height: 1000 }}></View>
         </View>
-      </View>
-    </ScrollView>
+      </Animated.ScrollView>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: Colors.cornSilk,
+    paddingTop: responsiveScreenHeight(25.8),
   },
   headerSection: {
+    position: "absolute",
     backgroundColor: Colors.white,
     height: responsiveScreenHeight(25),
     width: responsiveScreenWidth(100),
@@ -86,6 +146,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingTop: 65,
     paddingHorizontal: 16,
+    zIndex: 1,
   },
   bodySection: {
     backgroundColor: Colors.white,
