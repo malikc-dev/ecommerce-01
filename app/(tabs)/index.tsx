@@ -18,10 +18,10 @@ import CarouselSquare from "@/components/CarouselSquare";
 export default function HomeScreen() {
   const data = [
     {
-      image: require("../../assets/images/shop/O1.jpg"),
+      image: require("../../assets/images/shop/03.jpeg"),
     },
     {
-      image: require("../../assets/images/shop/O1.jpg"),
+      image: require("../../assets/images/shop/02.jpg"),
     },
     {
       image: require("../../assets/images/shop/O1.jpg"),

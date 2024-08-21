@@ -7,6 +7,8 @@ import {
   ScrollView,
   Image,
   useWindowDimensions,
+  ImageBackground,
+  Pressable,
 } from "react-native";
 
 import Animated, {
@@ -40,6 +42,7 @@ const CarouselSquare = ({ data }: any) => {
       x.value = event.contentOffset.x;
     },
   });
+
   return (
     <View>
       <Animated.ScrollView
@@ -57,7 +60,7 @@ const CarouselSquare = ({ data }: any) => {
             const scale = interpolate(
               x.value,
               [(index - 2) * SIZE, (index - 1) * SIZE, index * SIZE],
-              [0.88, 1, 0.88]
+              [0.8, 1, 0.8]
             );
 
             return {
@@ -69,7 +72,26 @@ const CarouselSquare = ({ data }: any) => {
           return (
             <View style={{ width: SIZE }} key={index}>
               <Animated.View style={[styles.imageContainer, style]}>
-                <Image source={item.image} style={styles.image} />
+                <ImageBackground
+                  resizeMode="cover"
+                  source={item.image}
+                  style={styles.image}
+                />
+                <View style={styles.imageOverlay} />
+                <View style={styles.imageTextContainer}>
+                  <Text style={styles.imageTextSubline}>
+                    Jusqu'à <Text style={styles.imageTextSpan}>50%</Text> de
+                    réduction.
+                  </Text>
+                  <Text style={styles.imageTextTitle}>
+                    Profitez de votre offre spéciale !
+                  </Text>
+                  <Pressable>
+                    <Text style={styles.imageTextButton}>
+                      Acheter maintenant
+                    </Text>
+                  </Pressable>
+                </View>
               </Animated.View>
             </View>
           );
@@ -120,11 +142,54 @@ const styles = StyleSheet.create({
   imageContainer: {
     borderRadius: 10,
     overflow: "hidden",
+    height: 180,
   },
   image: {
     width: "100%",
-    height: undefined,
-    aspectRatio: 16 / 9,
+    height: "100%",
+  },
+  imageOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: Colors.eerieBlack,
+    opacity: 0.4,
+  },
+  imageTextContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    padding: 20,
+  },
+  imageTextSubline: {
+    fontSize: 12,
+    fontFamily: "Satoshi Regular",
+    color: Colors.white,
+  },
+  imageTextSpan: {
+    fontFamily: "Satoshi Black",
+    color: Colors.darkOrange,
+  },
+  imageTextTitle: {
+    fontSize: 22,
+    fontFamily: "Satoshi Bold",
+    color: Colors.white,
+    width: "60%",
+    lineHeight: 25,
+    marginTop: 5,
+  },
+  imageTextButton: {
+    fontSize: 14,
+    fontFamily: "Satoshi Black",
+    color: Colors.white,
+    marginTop: 23,
+    backgroundColor: Colors.darkOrange,
+    width: 160,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    borderRadius: 15,
+    textAlign: "center",
+    overflow: "hidden",
   },
   dotsContainer: {
     flexDirection: "row",
