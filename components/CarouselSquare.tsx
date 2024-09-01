@@ -34,7 +34,7 @@ const CarouselSquare = ({ data }: any) => {
 
   const { width } = useWindowDimensions();
   const SIZE = width * 0.9;
-  const SPACER = (width - SIZE) / 2.8;
+  const SPACER = (width - SIZE) / 2;
 
   const x = useSharedValue(0);
   const onScroll = useAnimatedScrollHandler({
@@ -53,7 +53,7 @@ const CarouselSquare = ({ data }: any) => {
         snapToInterval={SIZE}
         decelerationRate="fast"
         onScroll={onScroll}
-        style={{ paddingVertical: 10 }}
+        style={{ paddingVertical: 15 }}
       >
         {newData.map((item: any, index: number) => {
           const style = useAnimatedStyle(() => {

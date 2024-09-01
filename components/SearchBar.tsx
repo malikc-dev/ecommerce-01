@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
+import Animated from "react-native-reanimated";
 
 import { responsiveScreenHeight } from "react-native-responsive-dimensions";
 
 import { Colors } from "../constants/Colors";
 import { Search } from "@/assets/icons";
 
-const SearchBar = () => {
+const SearchBar = ({ iconStyle, textStyle }: any) => {
   return (
-    <View style={styles.container}>
+    <Animated.View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Rechercher dans la boutique"
@@ -17,12 +18,10 @@ const SearchBar = () => {
         autoFocus={false}
         defaultValue="          Rechercher dans la boutique"
       />
-      <Search
-        style={styles.icon}
-        color={Colors.eerieBlack}
-        size={responsiveScreenHeight(3)}
-      />
-    </View>
+      <Animated.View style={[styles.icon]}>
+        <Search color={Colors.eerieBlack} size={responsiveScreenHeight(3)} />
+      </Animated.View>
+    </Animated.View>
   );
 };
 

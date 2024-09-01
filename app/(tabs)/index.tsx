@@ -30,7 +30,7 @@ export default function HomeScreen() {
   });
 
   const translateHeader = useAnimatedStyle(() => {
-    const translateY = interpolate(y.value, [0, 75], [0, -75], "clamp");
+    const translateY = interpolate(y.value, [0, 85], [0, -85], "clamp");
     return {
       transform: [{ translateY: translateY }],
     };
@@ -51,18 +51,11 @@ export default function HomeScreen() {
       scale = interpolate(y.value, [0, 75], [1, 0.5], "clamp");
     } else {
       // Handle scale up
-      scale = interpolate(y.value, [0, -75], [1, 1.3], "clamp");
+      scale = interpolate(y.value, [0, -75], [1, 1.1], "clamp");
     }
 
     return {
       transform: [{ scale }],
-    };
-  });
-
-  const scaleUp = useAnimatedStyle(() => {
-    const scale = interpolate(y.value, [0, -75], [1, 1.1], "clamp");
-    return {
-      transform: [{ scale: scale }],
     };
   });
 
@@ -77,6 +70,7 @@ export default function HomeScreen() {
       image: require("../../assets/images/shop/O1.jpg"),
     },
   ];
+
   return (
     <>
       {/* HEADER SECTION */}
@@ -154,7 +148,7 @@ const styles = StyleSheet.create({
     width: responsiveScreenWidth(100),
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    paddingVertical: 20,
+    paddingVertical: 25,
   },
   logoContainer: {
     flexDirection: "row",
@@ -203,9 +197,9 @@ const styles = StyleSheet.create({
     right: 0,
   },
   sectionHeader: {
-    fontSize: responsiveScreenFontSize(1.7),
+    fontSize: responsiveScreenFontSize(2),
     fontFamily: "Satoshi Black",
     color: Colors.eerieBlack,
-    marginLeft: 16,
+    marginLeft: 22,
   },
 });
