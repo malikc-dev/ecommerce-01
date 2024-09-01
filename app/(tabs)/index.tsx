@@ -21,6 +21,7 @@ import { Logo, Notifications } from "@/assets/icons";
 //import components
 import SearchBar from "@/components/SearchBar";
 import CarouselSquare from "@/components/CarouselSquare";
+import Categories from "@/components/Categories";
 
 export default function HomeScreen() {
   const y = useSharedValue(0);
@@ -119,7 +120,10 @@ export default function HomeScreen() {
             <CarouselSquare data={data} />
           </View>
 
-          <View style={{ height: 1000 }}></View>
+          {/* CATEGORIES */}
+          <Categories />
+
+          {/* <View style={{ height: 1000 }}></View> */}
         </View>
       </Animated.ScrollView>
     </>
