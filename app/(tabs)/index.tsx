@@ -1,10 +1,11 @@
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   useAnimatedScrollHandler,
   interpolate,
 } from "react-native-reanimated";
+
 import {
   responsiveScreenHeight,
   responsiveScreenWidth,
