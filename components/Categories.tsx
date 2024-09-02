@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState, useRef } from "react";
 
 //import colors
 import { Colors } from "../constants/Colors";
@@ -10,12 +10,31 @@ import { categoriesNames } from "@/data/categoriesNames";
 type Props = {};
 
 const Categories = (props: Props) => {
+  const [selected, setSelected] = useState(0);
+  const itemRef = useRef<TouchableOpacity[] | null[]>([]);
+
+  const handleSelected = (index: number) => {
+    const selectedItem = itemRef.current[index];
+    setSelected(index);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.categoriesText}>
         {categoriesNames.map((name, index) => (
-          <TouchableOpacity key={index}>
-            <Text style={styles.text}>{name}</Text>
+          <TouchableOpacity
+            activeOpacity={0.3}
+            onPress={() => handleSelected(index)}
+            ref={(ref) => (itemRef.current[index] = ref)}
+            key={index}
+            style={{ position: "relative" }}
+          >
+            <Text
+              style={[styles.text, index === selected && styles.activeText]}
+            >
+              {name}
+            </Text>
+            {index === selected && <View style={styles.activeBar} />}
           </TouchableOpacity>
         ))}
       </View>
@@ -36,10 +55,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    marginBottom: 20,
   },
   text: {
     fontSize: 14,
     fontFamily: "Satoshi Medium",
     color: Colors.eerieBlack,
+    paddingVertical: 5,
+  },
+  activeText: {
+    color: Colors.darkOrange,
+    fontFamily: "Satoshi Bold",
+  },
+  activeBar: {
+    width: "100%",
+    height: 2,
+    backgroundColor: Colors.darkOrange,
+    position: "absolute",
+    bottom: 0,
   },
 });
