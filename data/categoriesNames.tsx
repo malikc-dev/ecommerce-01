@@ -1,7 +1,22 @@
 export const categoriesNames = [
-  "Tout",
-  "Nouveau",
-  "Populaire",
-  "Femme",
-  "Homme",
+  {
+    name: "Tout",
+    slug: "tout",
+  },
+  {
+    name: "Nouveau",
+    slug: "nouveau",
+  },
+  {
+    name: "Populaire",
+    slug: "populaire",
+  },
+  {
+    name: "Femme",
+    slug: "femme",
+  },
+  {
+    name: "Homme",
+    slug: "homme",
+  },
 ];

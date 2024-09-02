@@ -7,21 +7,25 @@ import { Colors } from "../constants/Colors";
 //import datas
 import { categoriesNames } from "@/data/categoriesNames";
 
-type Props = {};
+type Props = {
+  onCategoryChange: (category: string) => void;
+};
 
-const Categories = (props: Props) => {
+const Categories = ({ onCategoryChange }: Props) => {
   const [selected, setSelected] = useState(0);
   const itemRef = useRef<TouchableOpacity[] | null[]>([]);
 
   const handleSelected = (index: number) => {
     const selectedItem = itemRef.current[index];
     setSelected(index);
+
+    onCategoryChange(categoriesNames[index].slug);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.categoriesText}>
-        {categoriesNames.map((name, index) => (
+        {categoriesNames.map((category, index) => (
           <TouchableOpacity
             activeOpacity={0.3}
             onPress={() => handleSelected(index)}
@@ -32,7 +36,7 @@ const Categories = (props: Props) => {
             <Text
               style={[styles.text, index === selected && styles.activeText]}
             >
-              {name}
+              {category.name}
             </Text>
             {index === selected && <View style={styles.activeBar} />}
           </TouchableOpacity>

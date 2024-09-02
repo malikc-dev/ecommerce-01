@@ -73,6 +73,10 @@ export default function HomeScreen() {
     },
   ];
 
+  const onCategoryChange = (category: string) => {
+    console.log("Category :", category);
+  };
+
   return (
     <>
       {/* HEADER SECTION */}
@@ -121,7 +125,7 @@ export default function HomeScreen() {
           </View>
 
           {/* CATEGORIES */}
-          <Categories />
+          <Categories onCategoryChange={onCategoryChange} />
 
           {/* <View style={{ height: 1000 }}></View> */}
         </View>
