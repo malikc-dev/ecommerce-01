@@ -15,11 +15,14 @@ import {
   responsiveScreenFontSize,
 } from "react-native-responsive-dimensions";
 
+import { BlurView } from "expo-blur";
+
 //import types
 import { ProductDataType } from "@/types";
 
 //import Colors
 import { Colors } from "@/constants/Colors";
+import { NotLiked } from "@/assets/icons";
 
 type Props = {
   data: ProductDataType;
@@ -34,6 +37,14 @@ const ProductCard = ({ data }: Props) => {
           resizeMode="cover"
           source={{ uri: data.image }}
         />
+        <TouchableOpacity style={styles.heart}>
+          <BlurView intensity={60} style={styles.heartBlur}>
+            <NotLiked
+              color={Colors.darkOrange}
+              size={responsiveScreenHeight(2.5)}
+            />
+          </BlurView>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.productInfos}>
@@ -62,6 +73,22 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: "hidden",
     marginBottom: responsiveScreenHeight(1),
+    position: "relative",
+  },
+  heart: {
+    position: "absolute",
+    top: 15,
+    right: 15,
+    borderRadius: 100,
+    overflow: "hidden",
+  },
+  heartBlur: {
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 100,
   },
   image: {
     flex: 1,
