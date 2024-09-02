@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     marginTop: 25,
-    flex: 1,
     paddingHorizontal: 22,
   },
   categoriesText: {

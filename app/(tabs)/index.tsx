@@ -22,6 +22,7 @@ import { Logo, Notifications } from "@/assets/icons";
 import SearchBar from "@/components/SearchBar";
 import CarouselSquare from "@/components/CarouselSquare";
 import Categories from "@/components/Categories";
+import CategoryProducts from "@/components/CategoryProducts";
 
 export default function HomeScreen() {
   const y = useSharedValue(0);
@@ -126,6 +127,7 @@ export default function HomeScreen() {
 
           {/* CATEGORIES */}
           <Categories onCategoryChange={onCategoryChange} />
+          <CategoryProducts productList={[]} />
 
           {/* <View style={{ height: 1000 }}></View> */}
         </View>
