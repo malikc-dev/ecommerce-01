@@ -127,7 +127,30 @@ export default function HomeScreen() {
 
           {/* CATEGORIES */}
           <Categories onCategoryChange={onCategoryChange} />
-          <CategoryProducts productList={[]} />
+          <CategoryProducts
+            productList={[
+              {
+                id: "1",
+                name: "Collection Hiver",
+                image: require("../../assets/images/shop/03.jpeg"),
+                price: 12800,
+                quantity: 1,
+                rating: 4.5,
+                description: "Description du produit 1",
+                category: "Tout",
+              },
+              {
+                id: "2",
+                name: "Accessoires en Jean de la ville",
+                image: require("../../assets/images/shop/03.jpeg"),
+                price: 25000,
+                quantity: 1,
+                rating: 4.5,
+                description: "Description du produit 1",
+                category: "Tout",
+              },
+            ]}
+          />
 
           {/* <View style={{ height: 1000 }}></View> */}
         </View>
